@@ -1,0 +1,16 @@
+# default: off
+# description: The rsync server is a good addition to an ftp server, as it \
+#	allows crc checksumming etc.
+service rsync
+{
+	disable	= no
+	bind =lcoalhost_ip
+	only_from =192.168.83.0/24
+	instances =10
+	socket_type     = stream
+	wait            = no
+	user            = root
+	server          = /usr/bin/rsync
+	server_args     = --daemon
+	log_on_failure  += USERID
+}

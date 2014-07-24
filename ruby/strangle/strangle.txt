@@ -1,0 +1,1 @@
+32.times{|y|print" "*(31-y);(y+1).times{|x|print" #{~y&x==0?"/":"\\"}"};puts}

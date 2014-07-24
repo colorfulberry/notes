@@ -1,0 +1,65 @@
+
+数据表信息迁移：
+
+
+bid_id:
+3   2013 - OW2国际开源竞赛                                 author：jack
+5   2013 SCILAB Open Source Software Contest               author：scilab
+32  第五届NUDT信息安全竞赛精英级			   author：龙军老师
+
+############################################
+bids-->contests  (将bids中id为：3，5,32的记录（全部字段除了id）写入contests)
+
+id          --> id(以此写入现有竞赛的后面)
+name        --> name
+budget      --> budget
+author_id   --> author_id
+deadline    --> deadline
+description --> description
+created_on  --> created_on
+updatet_on  --> updated_on
+commit      --> commit
+password    --> password
+
+mysql:
+
+INSERT INTO contests(name, budget, author_id, deadline, description, created_on, updated_on, commit, password) 
+SELECT name, budget, author_id, deadline, description, created_on, updated_on, commit, password FROM bids WHERE(id='3' AND id='5' AND id='32')
+
+###########################################
+biding_projects-->contesting_projects  （将biding_projects中bid_id为3,5,32的记录（除了字段：id，）写入contesting_projects）
+
+id          --> id(以此写入现有项目的后面)
+project_id  --> project_id
+bid_id      --> contest_id
+user_id     --> user_id
+description --> description
+created_at  --> created_at
+updatet_at  --> updated_at
+reward      --> reward
+
+
+mysql:
+
+INSERT INTO contesting_projects(project_id, contest_id, user_id, description, created_at, updated_at, reward) 
+SELECT project_id, bid_id, user_id, description, created_at, updated_at, reward FROM biding_projects WHERE(id='3' AND id='5' AND id='32')
+########################################
+xiangdong:
+
+移植竞赛：
+INSERT INTO contests (NAME, budget, author_id, deadline, description, created_on, updated_on, COMMIT, PASSWORD) 
+	SELECT NAME, budget, author_id, deadline, description, created_on, updated_on, COMMIT, PASSWORD FROM bids 
+	WHERE reward_type = 2
+;
+
+移植竞赛中的项目：
+INSERT INTO `contests``contesting_projects` (project_id, contest_id, user_id, description, created_at, updated_at, reward)
+    SELECT project_id, bid_id, user_id, description, created_at, updated_at, reward FROM biding_projects 
+    WHERE(bid_id IN (3,5,32) )
+;
+
+移植竞赛中的留言：
+
+移植竞赛中的关注人员：
+
+移植竞赛中的参与者：

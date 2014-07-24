@@ -1,0 +1,39 @@
+1.找出/var下所有的rpm并删除
+# find /var -name "*.rpm" -exec rm {} \;
+2.用find找出目录下指定关键字java的文件
+# find /etc "*"  |xargs grep "java"
+3.实时查看文本信息
+# tail -f /var/log/messages
+4.找到指定目录下所有文件，内容包含指定字符并打印到屏幕
+# find /etc/ -exec grep "ip_forward"  '{}' \; print
+5.找出系统中大于1Gb的文件
+# find / -size +1024000k -exec du -h '{}' \; print
+6.查看当前tcp连接数并统计
+# netstat -n | awk '/^tcp/ {++S[]} END {for(a in S) print a, S[a]}'
+;
+7.如何去掉test.sh文本中多余的空格符
+# dos2unix test.sh
+8.cp命令如何显示进度条
+# cp -r -v dir1 dir2
+9.如何不显示grep进程本身
+# ps -axu |grep httpd | grep -v grep
+10.查找当前目录下的所有扩展名为.cf的文件改为.conf
+# find ./ -name "*.cf" -exec renename .conf '{}' \;
+11.如何查看某一端口是什么程序在运行
+# lsof -i :80
+12.linux禁ping
+# echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all
+13.rsync同步压缩传输文件或者目录
+# rsync -aze ssh --delete sample_dir/ remote_host:/sample_dir/
+14.显示内存消耗做多的10个进程
+# pa aux|sort -nk +4 |tail
+15.快速扫描某网段的ip
+# nmap -sP 192.168.83.*
+16.禁止某个进程联网
+# iptables -m owner -pid-owner <process id> -j reject
+17.如何监听80端口发给clientA或者从clientA发送过来的数据包
+# tcpdump -i eth0 host clientA and port 80
+18 vi放到后台运行然后取出进程的演示
+# 程序运行时连续两次 ctrl+z 进程暂停进入后台  查看后台进程 jobs -l  取出进程 fg %进程号， bg %进程号可以使后台停止的进程再跑起来
+19.查看开机启动项的图像化界面
+# netsysv

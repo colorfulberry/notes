@@ -1,0 +1,3 @@
+1.rails new appname   create a appname space
+2.rails g scaffold person name:string  sex:integer   create the dbmigration tabl	e is peson has two proterties sex and name
+3.rake db:migrate   add table to sql now you can setting your database in your mind such as mysql,you must setting the appname/config/database.yml to do it . The Gemfile is a setting about set the gem which you need .

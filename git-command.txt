@@ -1,0 +1,17 @@
+show hostory
+gitk						//it can show a graph windows
+git log --graph sa.rb  		//It can show the graph of develop about sa.rb.
+git blame -L 8,+10    		//It can show this revision line between 8 and 18 who changed it.
+git log --stat       		//It can show the change of head and the every commit.
+git status -s         		//It can show the status in stash area.
+git tag -m "description"	//It can make a tag to this version
+git ls-files -s       		//It can show the diff conflict repos in stash area.
+cat :2:doc/readme.txt 		//It can show the doc/readme.txt of number 3 in stash.  
+git add -i            		//You can use this command to interactive window to switch what you can add to repos.
+
+roll back to a steadly repos 
+git reflog show master | head -5 //show latest 5 commites in beanch master
+git reset --hard master@{4}  	 //It will force to return the 5th commite which count form latest
+--hared(changeg stash area && recommand pointer && eorksapace).
+--mix(change stash area && recommand pointer not workspace).
+--soft(only change recommand pointer).

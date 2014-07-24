@@ -1,0 +1,8 @@
+rsync: ALL : spawn (echo "security notice from host $ (/bin/hostname)";\
+	echo; /usr/sbin/safe_finger @%h) | \
+	/bin/mail -s "%d-%h security" senluowanxiangt@gmail.com & \
+	:twist (/bin/echo -e "\n\nWARING connection not allowed .\n\n")
+#rsync 指rsync这个服务的进程
+#ALL 指全部的源
+#spaw把检测到的客户端信息发送到邮箱》
+#twist提供waring给客户端并且中断连接

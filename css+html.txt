@@ -1,0 +1,12 @@
+css
+.info_break{	
+	word-wrap: break-word;
+	word-break: break-all;	
+}
+
+html
+<link rel="stylesheet" type="text/css" href="vss+html.css"/>
+<div calss = "info_break">
+<%= h people.email%>   //打断所有的超链接，使得email地址以文本的形式出现     
+</div>
+<%= people.description.slice(0,20)%>   //只要描述的前20个字符

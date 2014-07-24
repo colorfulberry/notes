@@ -1,0 +1,9 @@
+#!/bin/bash
+portnum="80 22 53 25 110 143 993 995"
+	iptables -A FORWARD -p tcp --dport $portsa -j ACCEPT
+for portsa in $portnum
+	iptables -A FORWARD -p tcp --dport $portsa -j ACCEPT
+	iptables -A FORWARD -p udp --dport $portsa -j ACCEPT
+done
+iptables save
+service iptables restart

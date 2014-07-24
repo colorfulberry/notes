@@ -1,0 +1,6 @@
+#!/bin/bash
+icmp_type="0 3 4 11 12 14 16 18"
+for typeicmp in $icmp_type
+do
+	iptables -A INPUT -i eth0 -p icmp --icmp-type $typeicmp -j ACCEPT
+done
